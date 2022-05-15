@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class script_planet : MonoBehaviour
 {
-    public Transform center_rotation;
 
-    private float angle;
-    private float radius = 3;
+    private float angle = Mathf.PI * 0.5f;
+    private float angle_y = Mathf.PI * 0.5f;
+    public float radius = 3;
     [SerializeField] private float rotation_speed = 1;
 
     private Vector3 newTranslation;
 
     private bool space_key_pressed = false;
-    
+    private bool y_key_pressed = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        var rand = new System.Random();
+        angle_y *= (float)rand.NextDouble();
     }
 
     // Update is called once per frame
@@ -27,6 +29,11 @@ public class script_planet : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             space_key_pressed = !space_key_pressed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            y_key_pressed = !y_key_pressed;
         }
 
         // mouse click dtection
@@ -40,7 +47,6 @@ public class script_planet : MonoBehaviour
                 if (hit.transform.gameObject.name.ToLower() == "center")
                 {
                     var rand = new System.Random();
-
 
                     var RGBcolor1 = new byte[3];
                     rand.NextBytes(RGBcolor1);
@@ -60,14 +66,19 @@ public class script_planet : MonoBehaviour
         if (space_key_pressed)
         {
             float x = radius * Mathf.Cos(angle);
-            float y = transform.position.y;
+            float y = 0;
+            if (y_key_pressed)
+            {
+                y = radius * Mathf.Cos(angle_y);
+            }
             float z = radius * Mathf.Sin(angle);
 
             newTranslation.Set(x, y, z);
 
-            transform.position = newTranslation + center_rotation.position;
+            transform.position = newTranslation + GameObject.FindGameObjectWithTag("center").transform.position;
 
             angle += Time.deltaTime * rotation_speed;
+            angle_y += Time.deltaTime * rotation_speed;
         }
     }
 }
