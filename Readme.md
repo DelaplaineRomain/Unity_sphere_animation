@@ -12,5 +12,5 @@ This code allow the user to create a simple animation where a sphere is rotating
 
 ## Authors
 
-ex. Romain Delaplaine  
-ex. [@DomPizzie](https://github.com/DelaplaineRomain)
+Romain Delaplaine  
+[@DelaplaineRomain](https://github.com/DelaplaineRomain)
