@@ -10,6 +10,13 @@ This code allow the user to create a simple animation where a sphere is rotating
 
 * Tested on Windows 10
 
+### Control
+
+* space to launch rotation
+* right click to change color
+* left click to add new sphere
+* y to allow rotation around y-axis
+
 ## Authors
 
 Romain Delaplaine  
